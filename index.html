@@ -3,106 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>System Access</title>
+    
+    <!-- 🔍 गूगल सर्च इंजन (SEO) के लिए नाम - जयराज लववंशी -->
+    <title>Jayraj Lavvanshi | MASTER MIND VIJJU APOCALYPSE OS v18.0</title>
+    <meta name="description" content="Official Cyber OS Mainframe of Jayraj Lavvanshi (Master Mind Vijju). Computer Science Engineering and Secure Network Hub.">
+    <meta name="keywords" content="jayraj lavvanshi, Jayraj Lavvanshi, jayraj lavvanshi hacker, jayraj, lavvanshi, Master Mind Vijju, vijay91310, gurukripa computer mp online, computer science engineering dhar">
+    <meta name="author" content="Jayraj Lavvanshi">
+
+    <link rel="stylesheet" href="https://unpkg.com" />
     <style>
-        body {
-            background-color: #000;
-            color: #0f0;
+        * { box-sizing: border-box; user-select: none; -webkit-user-select: none; }
+        body, html {
+            background-color: #000; color: #0f0;
             font-family: 'Courier New', Courier, monospace;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            overflow: hidden;
+            height: 100vh; margin: 0; overflow: hidden; position: relative;
         }
+        canvas.matrix-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; opacity: 0.12; pointer-events: none; }
+        
+        .theme-green { --neon: #0f0; --neon-dim: #0a0; --bg: rgba(0, 15, 0, 0.96); }
+        body { color: var(--neon); }
+        
+        /* लॉगिन स्क्रीन */
+        .login-screen { display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; z-index: 2; position: relative; }
         .login-box {
-            border: 2px solid #0f0;
-            padding: 40px;
-            background: rgba(0, 20, 0, 0.8);
-            box-shadow: 0 0 20px #0f0;
-            text-align: center;
-            border-radius: 10px;
-            width: 300px;
+            border: 2px solid var(--neon); padding: 30px; background: rgba(0, 15, 0, 0.96);
+            box-shadow: 0 0 25px var(--neon); text-align: center; border-radius: 10px; width: 350px;
         }
-        h2 {
-            margin: 0 0 10px;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            text-shadow: 0 0 10px #0f0;
-        }
-        p {
-            font-size: 11px;
-            color: #0a0;
-            margin-bottom: 30px;
-        }
-        .input-group {
-            margin-bottom: 20px;
-        }
-        input {
-            width: 100%;
-            padding: 10px;
-            background: #000;
-            border: 1px solid #0f0;
-            color: #0f0;
-            font-family: inherit;
-            box-sizing: border-box;
-            outline: none;
-        }
-        input:focus {
-            box-shadow: 0 0 10px #0f0;
-        }
-        button {
-            width: 100%;
-            padding: 12px;
-            background: #0f0;
-            border: none;
-            color: #000;
-            font-weight: bold;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            box-shadow: 0 0 15px #0f0;
-            transition: 0.3s;
-        }
-        button:hover {
-            background: #000;
-            color: #0f0;
-            border: 1px solid #0f0;
-        }
+        
+        .biometric-pad { width: 65px; height: 65px; border: 2px solid var(--neon); margin: 15px auto; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 28px; cursor: pointer; position: relative; overflow: hidden; box-shadow: 0 0 10px var(--neon); }
+        .scanner-bar { position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--neon); box-shadow: 0 0 10px var(--neon); display: none; animation: scanAnim 1.5s infinite linear; }
+        @keyframes scanAnim { 0% { top: 0; } 50% { top: 100%; } 100% { top: 0; } }
+
+        h2 { margin: 0 0 10px; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 0 10px currentColor; font-size: 15px; }
+        .input-group { margin-bottom: 15px; position: relative; }
+        input, textarea, select { width: 100%; padding: 10px; background: #000; border: 1px solid var(--neon); color: var(--neon); font-family: inherit; outline: none; }
+        input:focus { box-shadow: 0 0 8px var(--neon); }
+        input { padding-right: 35px; }
+        button { width: 100%; padding: 12px; background: var(--neon); border: none; color: #000; font-weight: bold; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; box-shadow: 0 0 15px var(--neon); }
+        button:hover { background: #000; color: var(--neon); border: 1px solid var(--neon); }
+        
+        .loader-container { display: none; margin-top: 15px; text-align: left; }
+        .progress-bar { width: 0%; height: 8px; background: var(--neon); box-shadow: 0 0 10px var(--neon); }
+        
+        /* डेस्कटॉप */
+        .desktop { display: none; width: 100%; height: 100%; z-index: 3; position: absolute; top:0; left:0; padding: 15px; box-sizing: border-box; background: radial-gradient(circle, #000 40%, #050505 100%); }
+        .widgets { display: flex; justify-content: space-between; font-size: 10px; border-bottom: 1px solid var(--neon); padding-bottom: 8px; margin-bottom: 15px; }
+        
+        .app-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(75px, 1fr)); gap: 15px; }
+        .app-icon { text-align: center; cursor: pointer; font-size: 10px; padding: 8px; border-radius: 5px; color: var(--neon); }
+        .app-icon:hover { background: rgba(0,255,0,0.05); border: 1px dashed var(--neon); }
+        .app-icon span { display: block; font-size: 24px; margin-bottom: 3px; }
+        
+        /* विंडोज */
+        .window { position: absolute; top: 85px; left: 50%; transform: translateX(-50%); width: 340px; background: rgba(0, 15, 0, 0.98); border: 1px solid var(--neon); box-shadow: 0 0 15px rgba(0,255,0,0.1); display: none; flex-direction: column; border-radius: 5px; z-index: 5; }
+        .window-header { background: var(--neon); color: #000; padding: 5px 10px; font-weight: bold; display: flex; justify-content: space-between; font-size: 10px; }
+        .close-btn { cursor: pointer; background: #000; color: #f00; padding: 0 5px; border-radius: 3px; border: 1px solid #f00; }
+        .window-body { padding: 12px; font-size: 11px; overflow-y: auto; max-height: 280px; }
+        
+        #map, #spaceMap, #prankMap { width: 100%; height: 150px; border: 1px solid var(--neon); margin-top: 10px; background: #000; }
+        
+        /* एनीमेशन और गेम्स */
+        .cmd-box, .log-box, .nuke-box, .ai-box { height: 160px; background: #000; border: 1px solid var(--neon); padding: 5px; overflow-y: auto; text-align: left; font-size: 10px; }
+        .cmd-input, .ai-input { background: transparent; border: none; color: var(--neon); font-family: inherit; outline: none; width: 75%; }
+        #invadersCanvas { background: #000; border: 1px solid var(--neon); display: block; margin: 0 auto; }
+
+        .nuke-alert, .hack-detected-active { border-color: #f00 !important; box-shadow: 0 0 25px #f00 !important; animation: nukeFlash 0.3s infinite alternate; }
+        @keyframes nukeFlash { 0% { background: #000; } 100% { background: #400; } }
+        .anti-hack-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; color: #f00; z-index: 99999; padding: 30px; font-family: monospace; text-align: center; }
     </style>
 </head>
-<body>
-    <div class="login-box" id="loginBox">
-        <h2>SYSTEM ACCESS</h2>
-        <p>IDENTITY VERIFICATION REQUIRED</p>
-        <div class="input-group">
-            <input type="text" id="username" placeholder="USERNAME" value="VIJAY1437">
-        </div>
-        <div class="input-group">
-            <input type="password" id="password" placeholder="PASSWORD" value="143712">
-        </div>
-        <button type="button" onclick="login()">AUTHENTICATE</button>
+<body class="theme-green">
+
+    <canvas id="matrix" class="matrix-bg"></canvas>
+
+    <!-- एंटी-हैक अलार्म स्क्रीन -->
+    <div class="anti-hack-overlay" id="antiHackScreen">
+        <h1 style="font-size: 32px; text-shadow: 0 0 15px #f00;">🚨 SECURITY CORES BREACHED 🚨</h1>
+        <hr style="border-color: #f00; opacity: 0.5;">
+        <p>[⚠️] CRITICAL ALERT: REVERSE ENGINEERING ATTACK LOGGED.</p>
+        <p>[🔒] COGNITIVE SHIELDS ACTIVATED BY MASTER MIND VIJJU.</p>
+        <button type="button" style="background:#300; color:#f00; border:1px solid #f00; width:200px; margin-top:20px;" onclick="location.reload()">BOOT SAFE MODE</button>
     </div>
 
-    <script>
-        function login() {
-            var user = document.getElementById("username").value;
-            var pass = document.getElementById("password").value;
+    <!-- 1. लॉगिन स्क्रीन -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-box" id="loginBox">
+            <h2>MASTER MIND VIJJU UNIVERSAL CONTROL</h2>
+            <p style="font-size:10px; margin-bottom:15px; color:#0a0;">🛡️ SECURE GRID INTEGRITY v18.0</p>
+            <div id="formFields">
+                <div class="input-group"><input type="text" id="username" placeholder="USERNAME" value="VIJAY1437"></div>
+                <div class="input-group"><input type="password" id="password" placeholder="PASSWORD" value="143712"></div>
+                <p style="font-size:9px; margin:5px 0;">SCAN MASTER CORE DNA GENOME:</p>
+                <div class="biometric-pad" onclick="startBioScan()">🧬<div class="scanner-bar" id="scannerBar"></div></div>
+                <button type="button" onclick="startAuth()">AUTHENTICATE</button>
+            </div>
+            <div class="loader-container" id="loader">
+                <div style="border: 1px solid var(--neon); width: 100%;"><div class="progress-bar" id="pBar"></div></div>
+                <div style="font-size: 10px; margin-top: 5px;" id="statusTxt">CONNECTING...</div>
+            </div>
+        </div>
+    </div>
 
-            // यहाँ आपका सही यूजरनेम और पासवर्ड चेक हो रहा है
-            if (user === "VIJAY1437" && pass === "143712") {
-                document.getElementById("loginBox").innerHTML = `
-                    <h2 style="color: #0f0; text-shadow: 0 0 10px #0f0;">ACCESS GRANTED</h2>
-                    <p style="color: #0f0; font-size: 14px; margin-top: 20px;">Welcome back, VIJAY1437.</p>
-                    <div style="border: 1px dashed #0f0; padding: 15px; margin-top: 20px; font-weight: bold;">
-                        ⚙️ SYSTEM ONLINE <br> 🔒 SECURE CONNECTION ESTABLISHED
-                    </div>
-                `;
-            } else {
-                alert("ACCESS DENIED: Invalid Credentials!");
-            }
-        }
-    </script>
-</body>
-</html>
+    <!-- 2. डेस्कटॉप ओएस -->
+    <div class="desktop" id="desktopOS">
+        <div class="widgets">
+            <div>🛰️ TERMINAL HUB: Master Mind Vijju</div>
+            <div>🛡️ SPECTRUM CORE: ARMORED_v18</div>
+            <div id="liveTime">00:00:00</div>
+        </div>
+
+        <div class="app-grid">
+            <div class="app-icon" onclick="openWin('filesWin')"><span>📂</span>Profile</div>
+            <div class="app-icon" onclick="openWin('aiWin')"><span>🤖</span>CyberAI</div>
+            <div class="app-icon" onclick="openWin('spaceWin'); initSpaceTrack();"><span>🛰️</span>SpaceTrack</div>
+            <div class="app-icon" onclick="openWin('voiceTypeWin')"><span>🎙️</span>VoiceType</div>
+            <div class="app-icon" onclick="openWin('onionGenWin')"><span>🌐</span>OnionGen</div>
+            <div class="app-icon" onclick="openWin('invadersWin'); initInvadersGame();"><span>👾</span>Invaders</div>
+            <div class="app-icon" onclick="openWin('cmdWin')"><span>💻</span>Terminal</div>
+            <div class="app-icon" onclick="openWin('nukeWin')"><span>☢️</span>NukeCore</div>
+            <div class="app-icon" onclick="openWin('radarWin'); startRadarScan();"><span>📡</span>NetScan</div>
+            <div class="app-icon" onclick="openWin('trackerWin')"><span>🕵️‍♂️</span>NumTracker</div>
+            <div class="app-icon" onclick="openWin('satMapWin'); initSatMap();"><span>🛰️</span>MilitarySat</div>
+            <div class="app-icon" onclick="openWin('weatherWin'); loadWeather();"><span>⛅</span>Weather</div>
+            <div class="app-icon" onclick="location.reload()"><span>🔒</span>Exit</div>
+        </div>
+
+        <!-- प्रोफाइल विंडो -->
+        <div class="window" id="filesWin">
+            <div class="window-header"><span>📂 MASTER MIND VIJJU SECURITY CARD</span><span class="close-btn" onclick="closeWin('filesWin')">X</span></div>
+            <div class="window-body">
+                <p><b>ALIAS:</b> Master Mind Vijju</p>
+                <p><b>NAME:</b> Jayraj Lavvanshi</p>
+                <p><b>FIELD:</b> Computer Science Engineering</p>
