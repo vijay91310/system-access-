@@ -73,16 +73,36 @@
     </style>
 </head>
 <body>
-    <div class="login-box">
+    <div class="login-box" id="loginBox">
         <h2>SYSTEM ACCESS</h2>
         <p>IDENTITY VERIFICATION REQUIRED</p>
         <div class="input-group">
-            <input type="text" placeholder="USERNAME" value="VIJAY1437">
+            <input type="text" id="username" placeholder="USERNAME" value="VIJAY1437">
         </div>
         <div class="input-group">
-            <input type="password" placeholder="PASSWORD" value="143712">
+            <input type="password" id="password" placeholder="PASSWORD" value="143712">
         </div>
-        <button type="button">AUTHENTICATE</button>
+        <button type="button" onclick="login()">AUTHENTICATE</button>
     </div>
+
+    <script>
+        function login() {
+            var user = document.getElementById("username").value;
+            var pass = document.getElementById("password").value;
+
+            // यहाँ आपका सही यूजरनेम और पासवर्ड चेक हो रहा है
+            if (user === "VIJAY1437" && pass === "143712") {
+                document.getElementById("loginBox").innerHTML = `
+                    <h2 style="color: #0f0; text-shadow: 0 0 10px #0f0;">ACCESS GRANTED</h2>
+                    <p style="color: #0f0; font-size: 14px; margin-top: 20px;">Welcome back, VIJAY1437.</p>
+                    <div style="border: 1px dashed #0f0; padding: 15px; margin-top: 20px; font-weight: bold;">
+                        ⚙️ SYSTEM ONLINE <br> 🔒 SECURE CONNECTION ESTABLISHED
+                    </div>
+                `;
+            } else {
+                alert("ACCESS DENIED: Invalid Credentials!");
+            }
+        }
+    </script>
 </body>
 </html>
