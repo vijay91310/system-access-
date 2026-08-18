@@ -39,9 +39,14 @@
         input, textarea, select { width: 100%; padding: 10px; background: #000; border: 1px solid var(--neon); color: var(--neon); font-family: inherit; outline: none; }
         input:focus { box-shadow: 0 0 8px var(--neon); }
         input { padding-right: 35px; }
-        button { width: 100%; padding: 12px; background: var(--neon); border: none; color: #000; font-weight: bold; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; box-shadow: 0 0 15px var(--neon); }
+        
+        /* बटन्स */
+        button { width: 100%; padding: 12px; background: var(--neon); border: none; color: #000; font-weight: bold; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; box-shadow: 0 0 15px var(--neon); margin-bottom: 10px; }
         button:hover { background: #000; color: var(--neon); border: 1px solid var(--neon); }
         
+        .bypass-btn { background: #111; color: #0f0; border: 1px solid #0f0; box-shadow: 0 0 10px #0f0; font-size: 11px; }
+        .bypass-btn:hover { background: #0f0; color: #000; }
+
         .loader-container { display: none; margin-top: 15px; text-align: left; }
         .progress-bar { width: 0%; height: 8px; background: var(--neon); box-shadow: 0 0 10px var(--neon); }
         
@@ -95,7 +100,11 @@
                 <div class="input-group"><input type="password" id="password" placeholder="PASSWORD" value="143712"></div>
                 <p style="font-size:9px; margin:5px 0;">SCAN MASTER CORE DNA GENOME:</p>
                 <div class="biometric-pad" onclick="startBioScan()">🧬<div class="scanner-bar" id="scannerBar"></div></div>
+                
                 <button type="button" onclick="startAuth()">AUTHENTICATE</button>
+                
+                <!-- 🔓 फ़ोर्स बाईपास बटन (यह ब्राउज़र लॉक तोड़कर सीधे अंदर ले जाएगा) -->
+                <button type="button" class="bypass-btn" onclick="forceUnlockOS()">🔓 BYPASS & ENTER SYSTEM</button>
             </div>
             <div class="loader-container" id="loader">
                 <div style="border: 1px solid var(--neon); width: 100%;"><div class="progress-bar" id="pBar"></div></div>
@@ -125,14 +134,4 @@
             <div class="app-icon" onclick="openWin('trackerWin')"><span>🕵️‍♂️</span>NumTracker</div>
             <div class="app-icon" onclick="openWin('satMapWin'); initSatMap();"><span>🛰️</span>MilitarySat</div>
             <div class="app-icon" onclick="openWin('weatherWin'); loadWeather();"><span>⛅</span>Weather</div>
-            <div class="app-icon" onclick="location.reload()"><span>🔒</span>Exit</div>
-        </div>
-
-        <!-- प्रोफाइल विंडो -->
-        <div class="window" id="filesWin">
-            <div class="window-header"><span>📂 MASTER MIND VIJJU SECURITY CARD</span><span class="close-btn" onclick="closeWin('filesWin')">X</span></div>
-            <div class="window-body">
-                <p><b>ALIAS:</b> Master Mind Vijju</p>
-                <p><b>NAME:</b> Jayraj Lavvanshi</p>
-                <p><b>FIELD:</b> Computer Science Engineering</p>
-                
+            
