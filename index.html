@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Access</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #0f0;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .login-box {
+            border: 2px solid #0f0;
+            padding: 40px;
+            background: rgba(0, 20, 0, 0.8);
+            box-shadow: 0 0 20px #0f0;
+            text-align: center;
+            border-radius: 10px;
+            width: 300px;
+        }
+        h2 {
+            margin: 0 0 10px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: 0 0 10px #0f0;
+        }
+        p {
+            font-size: 11px;
+            color: #0a0;
+            margin-bottom: 30px;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            background: #000;
+            border: 1px solid #0f0;
+            color: #0f0;
+            font-family: inherit;
+            box-sizing: border-box;
+            outline: none;
+        }
+        input:focus {
+            box-shadow: 0 0 10px #0f0;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #0f0;
+            border: none;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 0 15px #0f0;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #000;
+            color: #0f0;
+            border: 1px solid #0f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <h2>SYSTEM ACCESS</h2>
+        <p>IDENTITY VERIFICATION REQUIRED</p>
+        <div class="input-group">
+            <input type="text" placeholder="USERNAME" value="SOURAV007">
+        </div>
+        <div class="input-group">
+            <input type="password" placeholder="PASSWORD" value="12345">
+        </div>
+        <button type="button">AUTHENTICATE</button>
+    </div>
+</body>
+</html>
